@@ -4,7 +4,14 @@
     <title>Spring Security Example</title>
 </head>
 <body>
+<a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+</form>
 <h1>Welcome to Index PAGE!</h1>
+<h4><a href="/login">Войти</a></h4>
+<h4><a href="/admin">Я админ</a></h4>
+<h4><a href="/user">В профиль пользователя</a></h4>
 
 
 </body>

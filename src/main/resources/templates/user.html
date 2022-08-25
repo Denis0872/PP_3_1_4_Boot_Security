@@ -4,7 +4,37 @@
     <title>Spring Security Example</title>
 </head>
 <body>
+<a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+
+</form>
+
 <h1>User, welcome spring boot security page!</h1>
+<h2>Ваши данные:</h2>
+<div>
+    <label>Имя:</label>
+    <label th:text="${user.getFirstname()}">admin@email.com</label>
+</div>
+<div>
+    <label>Фамилия:</label>
+    <label th:text="${user.getLastName()}">admin@email.com</label>
+</div>
+<div>
+    <label>E-Mail:</label>
+    <label th:text="${user.getEmail()}">admin@email.com</label>
+</div>
+<div>
+    <label>Возраст:</label>
+    <label th:text="${user.getAge()}">admin@email.com</label>
+</div>
+<div>
+    <label> Ваша роль:</label>
+    <label th:each="role : ${user.roles}">
+        <label th:text="${role}">ROLE</label>
+    </label>
+</div>
 
 
 </body>
