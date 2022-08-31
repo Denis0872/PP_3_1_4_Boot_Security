@@ -1,41 +1,70 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Spring Security Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" class="btn btn-dark text-secondary"/>
+    </form>
 </head>
-<body>
-<a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+<body class="bg-light">
 
-<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-    <input hidden type="submit" value="Sign Out"/>
+<section>
+    <div class="container-fluid h-100">
+        <div class="row h-100">
 
-</form>
+            <div class="p-0 col-10 bg-light">
+                <div class="tabs p-4">
+                    <h1>User information page</h1>
+                    <div class="pt-2 tab-content">
+                        <div class="tab-pane fade show active" id="description">
+                            <div class="p-3 border">
+                                <h5 class="my-0 mx-2">User info</h5>
+                            </div>
+                            <div class="p-3 bg-white border border-top-0">
+                                <table class="usersTable table table-striped bg-white">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Surname</th>
+                                        <th>Age</th>
+                                        <th>Email</th>
+                                        <th>Login</th>
+                                        <th>Role</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td th:text="${user.id}"></td>
+                                        <td th:text="${user.firstname}"></td>
+                                        <td th:text="${user.lastName}"></td>
+                                        <td th:text="${user.age}"></td>
+                                        <td th:text="${user.email}"></td>
+                                        <td th:text="${user.username}"></td>
+                                        <td>
+                                            <th:block th:each="role: ${user.roles}"
+                                                      th:text="${role.name()} + ' '">
+                                            </th:block>
+                                        </td>
 
-<h1>User, welcome spring boot security page!</h1>
-<h2>Ваши данные:</h2>
-<div>
-    <label>Имя:</label>
-    <label th:text="${user.getFirstname()}">admin@email.com</label>
-</div>
-<div>
-    <label>Фамилия:</label>
-    <label th:text="${user.getLastName()}">admin@email.com</label>
-</div>
-<div>
-    <label>E-Mail:</label>
-    <label th:text="${user.getEmail()}">admin@email.com</label>
-</div>
-<div>
-    <label>Возраст:</label>
-    <label th:text="${user.getAge()}">admin@email.com</label>
-</div>
-<div>
-    <label> Ваша роль:</label>
-    <label th:each="role : ${user.roles}">
-        <label th:text="${role}">ROLE</label>
-    </label>
-</div>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
+
+</div>
 </body>
 </html>

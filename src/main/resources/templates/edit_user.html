@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit user</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
-<a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
-<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-    <input hidden type="submit" value="Sign Out"/>
-</form>
-<h1>Edit user</h1>
 
+
+
+
+<h1>Edit user</h1>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" class="btn btn-dark text-secondary"/>
+        </form>
 <form th:method="patch" th:action="@{/admin/edit}" th:object="${user}">
     <table>
         <tr>
             <td>
                 <label for="id">UserId</label>
-                <input  th:field="*{id}" id="id" >
+                <input readonly th:field="*{id}" id="id" >
             </td>
         </tr>
         <td>

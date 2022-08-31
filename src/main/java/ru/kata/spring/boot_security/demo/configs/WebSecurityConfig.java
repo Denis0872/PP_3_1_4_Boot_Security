@@ -33,16 +33,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/user").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+//                .loginPage("/login")
                 .successHandler(successUserHandler)
+//                .loginProcessingUrl("/login")
+                .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
                 .permitAll();
+
+
 
     }
     @Override
@@ -53,22 +61,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("select username, password, active from user where username=?")
                 .authoritiesByUsernameQuery("select u.username, ur.roles from user u inner join user_role ur on u.id = ur.user_id where u.username=?");
 
+
     }
-//    @Bean
-//    public PasswordEncoder bcryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-    // аутентификация inMemory
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("user")
-//                        .roles("USER")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+
+        return new BCryptPasswordEncoder(12);
+
+    }
+
+
 }
