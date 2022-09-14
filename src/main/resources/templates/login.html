@@ -12,11 +12,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4 my-lg-5">
-            <h2><b>Please sign in</b></h2>
 
             <form name="f" class="my-3" method="post" th:action="@{/login}">
-                <fieldset>
-                    <legend>Please Login</legend>
+                <fieldset >
+                    <strong >
+                        <h2>Please Sign in</h2>
+                    </strong>
                     <div th:if="${param.error}" class="alert alert-danger">
                         Неправильный логин или пароль
                     </div>
@@ -24,10 +25,14 @@
                         Правильный логин и пароль
                     </div>
                     <div class="input-group">
-                        <label for="username"></label>
-                        <input class="form-control" id="username" type="email" name="username" placeholder="E-Mail">
-                        <label for="password"></label>
-                        <input class="form-control" id="password" type="password" name="password" placeholder="Password">
+                        <div>
+                            <label for="username"></label>
+                            <input size="41"  class="block w-full rounded p-2 rounded shadow border focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" id="username" type="email" name="username"  placeholder="E-Mail address">
+                        </div>
+                        <div>
+                            <input size="41"  class="block w-full rounded p-2 rounded shadow border focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" id="password" type="password"  name="password" placeholder="Password">
+                        </div>
+
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary btn-block my-2">Sign in</button>
