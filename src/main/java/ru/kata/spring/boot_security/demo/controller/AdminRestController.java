@@ -39,14 +39,10 @@ public class AdminRestController {
     public ResponseEntity<User> getUserById (@PathVariable ("id") Long id) {
         return ResponseEntity.ok(userService.findById(id));
     }
-    //вариант без ResponseEntity:
-//    @GetMapping("/{id}")
-//    public User getProduct(@PathVariable ("id") Long id){
-//        return userService.findById(id);
-//    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<User> editUser(@RequestBody User user,
-                         @PathVariable ("id") Long id) {
+    public ResponseEntity<User> editUser(@RequestBody User user, @PathVariable ("id") Long id)
+    {
         return ResponseEntity.ok(userService.update(user, id));
     }
 
@@ -55,18 +51,6 @@ public class AdminRestController {
         userService.deleteById(id);
     }
 
-//    idea from habr
-//
-//    @GetMapping("/products/{id}")
-//    public ResponseEntity<?> getProductRe(@PathVariable ("id") Long id){
-//        try {
-//            User user= userService.findById(id);
-//            return new ResponseEntity<>(user, HttpStatus.OK);
-//        } catch (Exception e){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-//
 
 }
 

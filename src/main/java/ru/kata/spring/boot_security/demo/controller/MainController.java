@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class LoginController {
-
+public class MainController {
+    @GetMapping("/")
+    public String indexPage() {
+        return "redirect:/login";
+    }
 
     @GetMapping("/login")
     public String Login(@RequestParam(value = "error", required = false)String error,
@@ -16,4 +19,14 @@ public class LoginController {
         model.addAttribute("logout", logout!=null);
         return "login";
     }
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin";
+    }
+
+    @GetMapping("/user")
+    public String user() {
+        return "user";
+    }
+
 }

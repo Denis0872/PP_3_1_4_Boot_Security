@@ -13,7 +13,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -40,18 +40,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-//    @Override
-//    public User update(User user, Long id) {
-//        User user1 = userRepository.findById(id).orElseThrow(
-//                ()-> new RuntimeException("User not found (update)"));
-//        user1.setName(user.getName());
-//        user1.setLastName(user.getLastName());
-//        user1.setUsername(user.getUsername());
-//        user1.setPassword(user.getPassword());
-//        user1.setEnabled(user.getEnabled());
-//        user1.setRoles(user.getRoles());
-//        return userRepository.save(user1);
-//    }
+
     @Override
     public User update(User user, Long id) {
         User user1 = userRepository.findById(id).orElseThrow(
